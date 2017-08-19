@@ -12,15 +12,21 @@
 ## I. IOS side
 1. use SyncKit or other CloudKit settings
 2. add WCSession delegate in Appdelegate
-3. updateContext after syncComplete (post Notification in self.synchronizer synchronizeWithCompletion:^(NSError *error) {)
+3. updateContext in viewdidAppear with NO, and with a another value, after syncComplete (post Notification in self.synchronizer synchronizeWithCompletion:^(NSError *error) {)
 and send dictionary to Watch, if it should make a new download from CloudKit
+in viewdidload:
+```Objective-C
+[self updateAppContext:@"NO"];
+```
 ```Objective-C
 -(void)syncCompleteDo{
     NSLog(@"syncComplete");
-    [self updateAppContext];
+    counter++;
+    NSString *string = [NSString stringWithFormat:@"%d", counter];
+    [self updateAppContext:string];
     //and do other suff
 }
-- (void)updateAppContext{
+- (void)updateAppContext:(NSString*)string{
     NSLog(@"updateAppContext");
     dispatch_async(dispatch_get_main_queue(), ^{
         NSUserDefaults *iCloudTokenSignedIn = [NSUserDefaults standardUserDefaults];
@@ -64,6 +70,7 @@ and send dictionary to Watch, if it should make a new download from CloudKit
         //update CoreData objects attributes, which changed by WatchOS
     }
 }
+```
 ##II. WatchKit Settings
 ---1. WCSession delegate
 ---2. Check, if it should download data:
@@ -71,7 +78,7 @@ and send dictionary to Watch, if it should make a new download from CloudKit
 - (void)session:(WCSession *)session didReceiveApplicationContext:(NSDictionary<NSString *,id> *)applicationContext{
     NSLog (@"didReceiveApplicationContext applicationContext");
     NSString *shouldDownloadCloud = [applicationContext objectForKey:@"ShouldDownloadCloud"];
-    if([shouldDownloadCloud isEqualToString:@"YES"]){
+    if(![shouldDownloadCloud isEqualToString:@"NO"]){
         [self sync];
     }
 }
