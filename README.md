@@ -34,15 +34,11 @@ in your VC:
         NSUserDefaults *iCloudTokenSignedIn = [NSUserDefaults standardUserDefaults];
         NSUserDefaults *iCloudEnabled = [NSUserDefaults standardUserDefaults];
         NSUserDefaults *pairedAndinstalled = [NSUserDefaults standardUserDefaults];
-        //set these in appdelegate
         NSLog([iCloudTokenSignedIn boolForKey:@"iCloudTokenSignedIn"] ? @"iCloudTokenSignedIn YES":@"iCloudTokenSignedIn NO");
         NSLog([iCloudEnabled boolForKey:@"iCloudEnabled"] ? @"iCloudEnabled YES":@"iCloudEnabled NO");
         NSLog([pairedAndinstalled boolForKey:@"pairedAndinstalled"] ? @"pairedAndinstalled YES":@"pairedAndinstalled NO");
         if (([iCloudTokenSignedIn boolForKey:@"iCloudTokenSignedIn"]) && ([iCloudEnabled boolForKey:@"iCloudEnabled"]) && ([pairedAndinstalled boolForKey:@"pairedAndinstalled"])){
-            //add date to dict, didReceiveApplicationContext: at WatchKit will be called just if the Context changed!
-            NSDateFormatter *dateformat = [[NSDateFormatter alloc]init];
-            NSString *now =[dateformat stringFromDate:[NSDate date]];
-            NSDictionary *finaldict = @{@"ShouldDownloadCloud":@"YES",@"date":now};
+            NSDictionary *finaldict = @{@"ShouldDownloadCloud":string};
             NSError *error = nil;
             [[WCSession defaultSession] updateApplicationContext:finaldict error:&error];
             NSLog(@"WCSession updateApplicationContex");
