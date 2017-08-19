@@ -14,7 +14,10 @@
 2. add WCSession delegate in Appdelegate
 3. updateContext in viewdidAppear with NO, and with a another value, after syncComplete (post Notification in self.synchronizer synchronizeWithCompletion:^(NSError *error) {)
 and send dictionary to Watch, if it should make a new download from CloudKit
+<<<<<<< HEAD
 set bool or standardUserdefault in applicationDidEnterBackground: to handle whether updateAppContext should call
+=======
+>>>>>>> origin/master
 in viewdidload:
 ```Objective-C
 [self updateAppContext:@"NO"];
