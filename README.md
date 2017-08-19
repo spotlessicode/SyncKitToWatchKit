@@ -12,7 +12,7 @@ Tested:
   - Warning! - for Watch OS 3.1. CloudKit usage is blocked in watchOS Simulator. Running any test will throw a “Not Authenticated” error even though you are signed in via the paired iOS Simulator.
 
 ## I. IOS side
-1. use SyncKit or other CloudKit settings
+1. use [SyncKit](https://github.com/mentrena/SyncKit) or other CloudKit settings
 2. add WCSession delegate in Appdelegate
 3. updateContext in viewdidAppear with NO, and with a another value, after syncComplete (post Notification in `self.synchronizer synchronizeWithCompletion:^(NSError *error) {)`
 and send dictionary to Watch, if it should make a new download from CloudKit
