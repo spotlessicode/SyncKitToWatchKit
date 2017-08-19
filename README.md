@@ -1,7 +1,13 @@
-##Synckit to watchkit:
+## Synckit to watchkit:
+- IOS sync with CloudKit
+- Watch OS download Data from CloudKit
+- Watch OS data changes sent to IOS with WatchConnectivity
+- IOS get data form WatchOS & save changes & sync with CloudKit, & notify WatchOS that it could download again - so user can make changes
+- on Watchos without new CloudKit download.
+
   Tested:
- 1. Xcode Version 8.3.3, Model : iPhone 6 iOS 10.3.3, and Apple Watch Series 2 Watch OS 3.2.3
- 2. in progress: Xcode Version 9.0 beta 5, Model: iPhone 6 iOS 11.0 beta 6, and Apple Watch Series 2 Watch OS 4.0 beta 6
+  - Xcode Version 8.3.3, Model : iPhone 6 iOS 10.3.3, and Apple Watch Series 2 Watch OS 3.2.3
+  - in progress: Xcode Version 9.0 beta 5, Model: iPhone 6 iOS 11.0 beta 6, and Apple Watch Series 2 Watch OS 4.0 beta 6
  Warning! - for Watch OS 3.1. CloudKit usage is blocked in watchOS Simulator. Running any test will throw a “Not Authenticated” error even though you are signed in via the paired iOS Simulator.
 
 ## I. IOS side
