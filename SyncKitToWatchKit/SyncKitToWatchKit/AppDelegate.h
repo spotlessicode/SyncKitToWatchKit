@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#import "QSCloudKitSynchronizer+CoreData.h"
+@interface AppDelegate : UIResponder <UIApplicationDelegate, QSCoreDataChangeManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (readonly, strong) NSPersistentContainer *persistentContainer;
-
+@property (nonatomic, strong) QSCloudKitSynchronizer * _Nullable synchronizer;
 - (void)saveContext;
 
 
